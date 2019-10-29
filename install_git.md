@@ -1,6 +1,6 @@
 #### _La version française suit._
 
-# Guide to installing git on your computer
+# Guide to installing git and knitr on your computer
 
 ### 1. Quick check to see whether git is already installed.
 
@@ -40,19 +40,30 @@ You can always check your entries with ```git config --global user.name``` and `
 
 ### 4. Create a GitHub account.
 Go to [github.com](https://github.com "GitHub") and sign up for an account.
+##### Mazal tov! Git should now be set up and ready to use!
+
+### 5. Install R packages for workshop
+Open R studio and run the following script to install knitr (useful for working with RMarkdown) and emmeans (useful for effect size analysis) packages. If you don't have R Studio, install it first: [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
+
+```r
+install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
+
+```
+We also recommend you install the tidyverse package for ggplot2, dplyr and some other cool packages that we might get into if we have time.
+
+```r
+install.packages("tidyverse")
+```
 
 
-### Mazal tov! Git should now be set up and ready to use!
-
-
-#### References
+### References
 _Installing Git_: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "Getting Started - Installing Git")  
 _Install Git_: [Bitbucket tutorial](https://www.atlassian.com/git/tutorials/install-git "Install Git")  
 _Set up Git_: [GitHub](https://help.github.com/en/github/getting-started-with-github/set-up-git "Set up Git")
 
 ***
 
-# Guide pour installer git sur ton ordinateur
+# Guide pour installer git et knitr sur ton ordinateur
 
 ### 1. Vérification rapide pour voir si git est déjà installé.
 
@@ -93,11 +104,24 @@ Tu peux toujours vérifier tes infos avec ```git config --global user.name``` et
 ### 4. Crée un compte GitHub.
 Vas à [github.com](https://github.com "GitHub") et crée un compte.
 
+#### Mazal tov ! Git devrait être prêt à utiliser !
 
-### Mazal tov ! Git devrait être prêt à utiliser !
+
+### 5. Installez les packages R pour workshop
+Ouvrez R studio et exécutez le script suivant pour installer les packages knitr (utile pour utiliser RMarkdown) et emmeans (utile pour l'analyse de la taille de l'effet). Si vous n’avez pas R Studio, installez-le d’abord: [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
+
+```r
+install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
+
+```
+Nous vous recommandons également d'installer le paquet tidyverse pour ggplot2, dplyr et quelques autres paquets intéressants dans lesquels nous pourrions entrer si nous en avions le temps.
+
+```r
+install.packages("tidyverse")
+```
 
 
-#### Références
+### Références
 _Installing Git_: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "Getting Started - Installing Git")  
 _Install Git_: [Bitbucket tutorial](https://www.atlassian.com/git/tutorials/install-git "Install Git")  
 _Set up Git_: [GitHub](https://help.github.com/en/github/getting-started-with-github/set-up-git "Set up Git")
