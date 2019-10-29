@@ -1,3 +1,5 @@
+#### _La version française suit._
+
 # Guide to installing git on your computer
 
 ### 1. Quick check to see whether git is already installed.
@@ -16,7 +18,7 @@ Otherwise, you need to install git.
 ### 2. Install git.
 
 For __Windows__ users, install [git for Windows](https://gitforwindows.org/ "git for Windows")  
-For __Mac__ users, install the latest compatible version using the [git-osx-installer](https://sourceforge.net/projects/git-osx-installer/files/ "git-osx-installer")
+For __Mac__ users, install the latest compatible version using the [git-osx-installer](https://sourceforge.net/projects/git-osx-installer/files/ "git-osx-installer")  
 You can check that git is installed by retrying ```git --version```
 
 
@@ -44,6 +46,58 @@ Go to [github.com](https://github.com "GitHub") and sign up for an account.
 
 
 #### References
+_Installing Git_: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "Getting Started - Installing Git")  
+_Install Git_: [Bitbucket tutorial](https://www.atlassian.com/git/tutorials/install-git "Install Git")  
+_Set up Git_: [GitHub](https://help.github.com/en/github/getting-started-with-github/set-up-git "Set up Git")
+
+***
+
+# Guide pour installer git sur ton ordinateur
+
+### 1. Vérification rapide pour voir si git est déjà installé.
+
+Ouvrir le __Terminal__ (Mac) or l'__Invite de commande__ ou __Git Bash__ (Windows).  
+(Si tu as l'application Git Bash, git devrait déjà être installé.)
+
+```shell
+git --version
+
+```
+Est-ce que le Terminal/l'Invite de commande te dit ```git version X.XX.X.etc.```? Git est installé.  Excellent.  
+Sinon, tu dois installé git.
+
+
+### 2. Installer git.
+
+Sur __Windows__, installe [git pour Windows](https://gitforwindows.org/ "git pour Windows")  
+Sur __Mac__, installe la dernière version compatible utilisant le [git-osx-installer](https://sourceforge.net/projects/git-osx-installer/files/ "git-osx-installer")  
+Tu peux revérifier que git est installé en réessayant ```git --version```
+
+
+### 3. Entre tes identifiants
+
+Dans le __Terminal__ ou l'__Invite de commande__/__Git Bash__, entre ton nom d'utilisateur:
+```shell
+git config --global user.name "PRÉNOM NOM_DE_FAMILLE"
+```
+_Replace PRÉNOM et NOM_DE_FAMILLE avec les tiens !_  
+  
+Entre ton adresse courriel:
+```shell
+git config --global user.email "COURRIEL"
+```
+  
+Tu peux toujours vérifier tes infos avec ```git config --global user.name``` et ```git config --global user.email```
+
+
+### 4. Crée un compte GitHub.
+Vas à [github.com](https://github.com "GitHub") et crée un compte.
+
+
+### Mazal tov ! Git devrait être prêt à utiliser !
+
+
+#### Références
 _Installing Git_: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "Getting Started - Installing Git")  
 _Install Git_: [Bitbucket tutorial](https://www.atlassian.com/git/tutorials/install-git "Install Git")  
 _Set up Git_: [GitHub](https://help.github.com/en/github/getting-started-with-github/set-up-git "Set up Git")
