@@ -64,7 +64,7 @@ git --version
 
 ```
 Est-ce que le Terminal/l'Invite de commande te dit ```git version X.XX.X.etc.```? Git est installé.  Excellent.  
-Sinon, tu dois installé git.
+Sinon, tu dois installer git.
 
 
 ### 2. Installer git.
@@ -74,13 +74,13 @@ Sur __Mac__, installe la dernière version compatible utilisant le [git-osx-inst
 Tu peux revérifier que git est installé en réessayant ```git --version```
 
 
-### 3. Entre tes identifiants
+### 3. Entrer tes identifiants.
 
 Dans le __Terminal__ ou l'__Invite de commande__/__Git Bash__, entre ton nom d'utilisateur:
 ```shell
 git config --global user.name "PRÉNOM NOM_DE_FAMILLE"
 ```
-_Replace PRÉNOM et NOM_DE_FAMILLE avec les tiens !_  
+_Remplace PRÉNOM et NOM_DE_FAMILLE avec les tiens !_  
   
 Entre ton adresse courriel:
 ```shell
