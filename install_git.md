@@ -40,10 +40,12 @@ You can always check your entries with ```git config --global user.name``` and `
 
 ### 4. Create a GitHub account.
 Go to [github.com](https://github.com "GitHub") and sign up for an account.
+
 ##### Mazal tov! Git should now be set up and ready to use!
 
-### 5. Install R packages for workshop
-Open R studio and run the following script to install knitr (useful for working with RMarkdown) and emmeans (useful for effect size analysis) packages. If you don't have R Studio, install it first: [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
+
+### 5. Install R packages for workshop.
+Open RStudio and run the following script to install knitr (useful for working with RMarkdown) and emmeans (useful for effect size analysis) packages. If you don't have RStudio, install it first: [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
 
 ```r
 install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
@@ -107,8 +109,8 @@ Vas à [github.com](https://github.com "GitHub") et crée un compte.
 #### Mazal tov ! Git devrait être prêt à utiliser !
 
 
-### 5. Installez les packages R pour workshop
-Ouvrez R studio et exécutez le script suivant pour installer les packages knitr (utile pour utiliser RMarkdown) et emmeans (utile pour l'analyse de la taille de l'effet). Si vous n’avez pas R Studio, installez-le d’abord: [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
+### 5. Installez les packages R pour workshop.
+Ouvrez Rstudio et exécutez le script suivant pour installer les packages knitr (utile pour utiliser RMarkdown) et emmeans (utile pour l'analyse de la taille de l'effet). Si vous n’avez pas RStudio, installez-le d’abord : [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)
 
 ```r
 install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
