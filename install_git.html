@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -254,9 +255,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -270,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -287,8 +285,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -346,20 +342,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -403,11 +396,14 @@ You can check that git is installed by retrying <code>git --version</code></p>
 </div>
 <div id="create-a-github-account." class="section level3">
 <h3>4. Create a GitHub account.</h3>
-<p>Go to <a href="https://github.com" title="GitHub">github.com</a> and sign up for an account. ##### Mazal tov! Git should now be set up and ready to use!</p>
+<p>Go to <a href="https://github.com" title="GitHub">github.com</a> and sign up for an account.</p>
+<div id="mazal-tov-git-should-now-be-set-up-and-ready-to-use" class="section level5">
+<h5>Mazal tov! Git should now be set up and ready to use!</h5>
 </div>
-<div id="install-r-packages-for-workshop" class="section level3">
-<h3>5. Install R packages for workshop</h3>
-<p>Open R studio and run the following script to install knitr (useful for working with RMarkdown) and emmeans (useful for effect size analysis) packages. If you don’t have R Studio, install it first: <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a></p>
+</div>
+<div id="install-r-packages-for-workshop." class="section level3">
+<h3>5. Install R packages for workshop.</h3>
+<p>Open RStudio and run the following script to install knitr (useful for working with RMarkdown) and emmeans (useful for effect size analysis) packages. If you don’t have RStudio, install it first: <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a></p>
 <pre class="r"><code>install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
 </code></pre>
 <p>We also recommend you install the tidyverse package for ggplot2, dplyr and some other cool packages that we might get into if we have time.</p>
@@ -454,9 +450,9 @@ Tu peux revérifier que git est installé en réessayant <code>git --version</co
 <h4>Mazal tov ! Git devrait être prêt à utiliser !</h4>
 </div>
 </div>
-<div id="installez-les-packages-r-pour-workshop" class="section level3">
-<h3>5. Installez les packages R pour workshop</h3>
-<p>Ouvrez R studio et exécutez le script suivant pour installer les packages knitr (utile pour utiliser RMarkdown) et emmeans (utile pour l’analyse de la taille de l’effet). Si vous n’avez pas R Studio, installez-le d’abord: <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a></p>
+<div id="installez-les-packages-r-pour-workshop." class="section level3">
+<h3>5. Installez les packages R pour workshop.</h3>
+<p>Ouvrez Rstudio et exécutez le script suivant pour installer les packages knitr (utile pour utiliser RMarkdown) et emmeans (utile pour l’analyse de la taille de l’effet). Si vous n’avez pas RStudio, installez-le d’abord : <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a></p>
 <pre class="r"><code>install.packages(c('knitr', 'emmeans'), dependencies = TRUE) 
 </code></pre>
 <p>Nous vous recommandons également d’installer le paquet tidyverse pour ggplot2, dplyr et quelques autres paquets intéressants dans lesquels nous pourrions entrer si nous en avions le temps.</p>
@@ -487,6 +483,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
