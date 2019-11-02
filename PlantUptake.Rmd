@@ -79,6 +79,24 @@ plot(fit)
 anova(fit)
 ```
 
+```{r eval=FALSE}
+# Let's report the results of the ANOVA in table format
+#  we forgot to ask you to install pander, so we will do it now
+#  we set the chunk option eval=FALSE so that it won't install each time you knit the document
+
+install.packages("pander")
+
+```
+
+```{r, include=TRUE, echo=FALSE, warning=FALSE}
+# We set the include flag to TRUE since we want to include this table in the final document. 
+# We set echo to FALSE since we don't want to 
+
+library(pander)
+anova(fit) %>% pander(caption="**Table 1**: Two-way analysis of variance for the uptake of CO~2~ by two populations of grass (Type) in chilled or unchilled conditions (Treatment) and the interaction of these two factors (Treatment:Type). We report degrees of freedom (Df), the sum of squares (Sum Sq), the mean sum of squares (Mean Sq), the F values (F value) and p-values (Pr(>F)).")
+
+```
+
 ```{r}
 # Load emmeans package to analyze effect sizes by calculating group means and calculating comaprisons.
 library(emmeans)
@@ -179,6 +197,28 @@ The negative response of the Mississippi population to chilled conditions was `r
 
 
 ```{r}
-# Tips on using RMarkdown for reproducible science:
+## Exercises
+
+## 
+# Now try to export this RMarkdown into word format.
+# Then, customize the styles.
+# https://rmarkdown.rstudio.com/articles_docx.html
+
+## 
+# Try uploading this, or your own code analysis to a "Sandbox" version of Zenodo
+# https://sandbox.zenodo.org
+# This will make it public, but the DOI will not be permanent.
+# You can also try to connect your Zenodo account with GitHub (Note: the instructors have not tried this yet)
+# For your real analysis and a permanent DOI, use: https://zenodo.org
+
+## 
+# Try writing your own analysis in RMarkdown.
+# You can either use your own data, pick one from Zenodo, or use one of the datasets included in R
+# https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html
+# Pick one that is relevant to your own research so that 
+
+## 
+# Read and implement some of the tips for using RMarkdown for reproducible science:
 # https://kbroman.org/knitr_knutshell/pages/reproducible.html
+
 ```
