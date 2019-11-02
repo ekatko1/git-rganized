@@ -86,7 +86,7 @@ library(emmeans)
 
 ```{r}
 # Calculate group means.
-group_means <- emmeans(specs=c("Type", "Treatment"), fit)
+group_means <- emmeans(specs=c("Treatment", "Type"), fit)
 group_means
 ```
 
@@ -141,15 +141,42 @@ ggplot(aes(y=emmean, x= Treatment), data=estimates) +
 
 group_means %>% 
   contrast(method="trt.vs.ctrl", by="Type") %>% 
-  summary(infer=c(TRUE, TRUE), level=0.95) %>% # Includes 95% confidence intervals
-  data.frame -> chill
+  summary(infer=c(TRUE, TRUE), level=0.95) %>% # Calculate 95% confidence intervals
+  data.frame -> chill # Save as data frame
 chill
-# We can now report this finding below. We can write code within the text, but to make it simpler, we pre-filter for each population.  
+# We can now report this finding below. We can write code within the text, but to make it simpler, we pre-filter for each population and round the numbers.
+chill <- chill %>% 
+  mutate( lower.CL = lower.CL %>% round(1), 
+          upper.CL = upper.CL %>% round(1) , 
+          estimate = estimate %>% round(1),
+          p.value  = p.value %>% format.pval(digits =2, eps = 0.001) )
 Quebec <- chill %>% filter(Type=="Quebec")
 Miss <- chill %>% filter(Type=="Mississippi")
 ```
 
-We find that the Quebec grass population do not significantly decrease their CO~2~ uptake in chilled conditions (`r Quebec %>% select(estimate) %>% abs` /mu mol
+We found that the mean CO~2~ uptake of the Quebec grass population decreased by 
+`r Quebec %>% select(estimate) %>% abs` \mu mol/m^2^
+(95% CI: `r Quebec %>% select(upper.CL) %>% "*"(-1)`, `r Quebec %>% select(lower.CL) %>% "*"(-1)`), though this decrease was not significant (p=`r Quebec %>% select(p.value)`).
+In contrast, the Mississipi grass population CO~2~ uptake a decreased by `r Miss %>% select(estimate) %>% abs` \mu mol/m^2^
+(95% CI: `r Miss %>% select(upper.CL) %>% "*"(-1)`, `r Miss %>% select(lower.CL) %>% "*"(-1)`; p`r Miss %>% select(p.value)` ) . 
+
+```{r}
+# Although, this might be enough to convince some, we don't actually demonstrate that there is a significant difference between the populations, just that one has a large effect size and another, a small one.
+# Let's contrast the two contrast if the effects are in fact significantly different
+group_means %>% 
+  contrast(interaction = "pairwise") %>%
+  summary(infer=c(TRUE, TRUE)) %>%
+  mutate(lower.CL = lower.CL %>% round(1), 
+         upper.CL = upper.CL %>% round(1) , 
+         estimate = estimate %>% round(1),
+         p.value  = p.value %>% format.pval(digits=2, eps = 0.001) ) -> result
+
+
+```
+
+The negative response of the Mississippi population to chilled conditions was `r result %>% select(estimate) %>% abs` \mu mol/m^2^
+(95% CI: `r Miss %>% select(upper.CL) %>% "*"(-1)`, `r result %>% select(lower.CL) %>% "*"(-1)`; p=`r result %>% select(p.value)`) greater than that of the Quebec population.
+
 
 ```{r}
 # Tips on using RMarkdown for reproducible science:
