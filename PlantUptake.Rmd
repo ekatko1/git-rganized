@@ -201,8 +201,10 @@ The negative response of the Mississippi population to chilled conditions was `r
 
 ## 
 # Now try to export this RMarkdown into word format.
-# Then, customize the styles.
+# Then, customize the styles to your liking.
 # https://rmarkdown.rstudio.com/articles_docx.html
+# Challenge: Try to make the table look like it belongs in a science article (e.g.):
+#  https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg
 
 ## 
 # Try uploading this, or your own code analysis to a "Sandbox" version of Zenodo
