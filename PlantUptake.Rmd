@@ -1,0 +1,157 @@
+---
+output: html_document
+---
+
+# Quebec population of *Echinochloa crus-galli* adapted for CO~2~ uptake in cold temperatures
+
+## Results
+
+```{r YourFirstRChunk, include=FALSE}
+# This is your first r chunk .
+# Each chunk contains code that you can execute within Rstudio  and that can produce results that will be displayed in the output document.
+# To execut a chunk of code, click the green triangle on the top right of this code chunk
+# To produce the final document, clik "Knit" in the taskbar.
+
+# This code changes the a chunk "option" so that the results of the code are hidden in the output document (include=FALSE) and so that results from chunks that have not changed are not-re computed (cache=TRUE). The last one may cause unexpected results so, you may want to change it to FALSE.
+# Note: "knitr::opts_chunk" means that the function "opts_chunk" is pulled from the knitr package.  We do this to avoid loading the knitr library for a one-time use.
+# For more chunk options, see https://yihui.name/knitr/options/#chunk_options
+knitr::opts_chunk$set(include=FALSE)
+```
+
+```{r}
+#Load up tidyverse
+library(tidyverse)
+
+#Note: if you don't know what a function does, you can write `?function` to find out what it means. Also `%>%` is a pipe. This operator passes the output of the function on the left to the function on the right. For example, `25 %>% sqrt` is the same as `sqrt(5)`.
+
+```
+
+
+
+```{r}
+
+#Inspect the CO2 data set. The uptake column describes the rate of CO2 uptake (umol/m^2) by grasses from two Echinochloa crus-galli populations: Quebec and Mississippi, and under two conditions: chilled or unchilled. We expect that the Quebec population is better adapted to cold conditions and can take up CO2 equally well in chilled or unchilled conditions. Furthermore, the tests were conducted at different CO2 concentration Mississippi grasses are expected to take up CO2 equally well in all conditions. 
+
+str(CO2)
+```
+
+```{r}
+# Use ggplot to visualize the dataset.
+# We us the 
+ggplot(aes(y=uptake, x=Treatment), data=CO2) + 
+  facet_wrap(facets="conc") + 
+  geom_point(aes(color=Type))
+```
+
+```{r}
+# For this exercise, we will select a subset of data to analyze. We will restrict ourselves to CO~2~ uptake rates of 675.
+
+CO2 %>% filter(conc==675) -> CO2subset
+```
+
+```{r}
+# Visualize the subset.
+
+
+ggplot(aes(y=uptake, x=Treatment), data=CO2subset) + 
+  facet_wrap(facets="conc") + 
+  geom_point() +
+  facet_wrap(facets="Type") +
+  theme_classic(base_size=25)
+```
+
+
+```{r}
+
+# Fit a model
+
+fit <- lm(uptake ~ Treatment*Type, data=CO2subset)
+
+```
+
+```{r}
+# Test assumptions
+plot(fit)
+```
+
+```{r}
+# Run an ANOVA on the model
+anova(fit)
+```
+
+```{r}
+# Load emmeans package to analyze effect sizes by calculating group means and calculating comaprisons.
+library(emmeans)
+```
+
+```{r}
+# Calculate group means.
+group_means <- emmeans(specs=c("Type", "Treatment"), fit)
+group_means
+```
+
+```{r}
+# Assign letters to different categories to visually see significant differences.
+group_means %>% 
+  cld.emmGrid(Letters=letters, alpha=0.05) %>%
+  mutate( .group = trimws( .group ) ) -> estimates
+  # summary
+```
+
+```{r}
+# Create a plot for visualizing the treatment effects.
+
+ggplot(aes(y=emmean, x= Treatment), data=estimates) + 
+  geom_col( fill="white", colour="black", size=1.5, width= 0.5) +
+  facet_wrap(facets="Type") + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), size=1.5, width=0.1) +
+  ylab("uptake") + # xlab("") +
+  ylim(0, 53) +
+  theme_classic(base_size=25)
+```
+
+```{r PlotWithLetters, include=TRUE, echo=FALSE, fig.width=4, fig.height=4}
+# Include grouping letters on the plot.
+ggplot(aes(y=emmean, x= Treatment), data=estimates) + 
+  geom_col( fill="white", colour="black", size=0.75, width= 0.5) +
+  facet_wrap(facets="Type") +
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), size=0.75, width=0.1) +
+  ylab("uptake") + # xlab("") +
+  geom_text( aes(label=.group, y=upper.CL+5), size=5 ) +
+  ylim(0, 53) +
+  theme_classic(base_size=14) 
+# This looks pretty good, so we can include it in the output document by changing the "include" chunk option for this specific chunk in it's header (include=TRUE)
+# However, we don't want to include the code, so we can set echo=FALSE. Note that we could have done this in the first chunk where we set defaults.
+# Set fig.width and fig.height to make the figure size appropriate in the output document
+
+```
+
+```{r}
+# Let's add a little caption for this figure. 
+# Double aseterix makes **bold**. 
+# Tildae makes sub~script~.
+# Single asterix makes *italics*
+# For a brief guide to RMarkdown syntax, see: https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+```
+
+**Fig 1**: Plant CO~2~ uptake rates in *Echinochloa crus-galli* at 650 ppm of CO~2~ in Quebec and Mississippi under chilled and unchilled conditions. The letters represent groups that are significantly different at the 95% confidence level.
+
+```{r}
+# The above approach tests the pairwise differences between all four groups. However, this is more comparisons than we are really interested in. Let's begin by focusing in on two comparisons. We draw two contrasts (i.e. comparisons), between the chilled and unchilled treatment in each of the two populations.
+
+group_means %>% 
+  contrast(method="trt.vs.ctrl", by="Type") %>% 
+  summary(infer=c(TRUE, TRUE), level=0.95) %>% # Includes 95% confidence intervals
+  data.frame -> chill
+chill
+# We can now report this finding below. We can write code within the text, but to make it simpler, we pre-filter for each population.  
+Quebec <- chill %>% filter(Type=="Quebec")
+Miss <- chill %>% filter(Type=="Mississippi")
+```
+
+We find that the Quebec grass population do not significantly decrease their CO~2~ uptake in chilled conditions (`r Quebec %>% select(estimate) %>% abs` /mu mol
+
+```{r}
+# Tips on using RMarkdown for reproducible science:
+# https://kbroman.org/knitr_knutshell/pages/reproducible.html
+```
